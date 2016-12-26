@@ -1,6 +1,7 @@
 package com.egfavre;
 
 
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 import org.h2.tools.Server;
 import org.jsoup.*;
 import org.jsoup.nodes.Document;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -21,6 +23,8 @@ import java.sql.SQLException;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+    MaxentTagger tagger = new MaxentTagger("/Users/user/IdeaProjects/MakingNews/models/english-bidirectional-distsim.tagger");
 
 
     @PostConstruct
@@ -44,10 +48,19 @@ public class Controller {
     public String scrape() throws Exception{
         //get document
         Document doc = Jsoup.connect("http://www.tmz.com").get();
-        String text = doc.body().text();
         Elements paragraphs = doc.select("p");
-        for(Element p : paragraphs)
-            System.out.println(p.text());
+
+        //convert element text to string
+        ArrayList<String> paraStrings = new ArrayList<>();
+        for(Element p : paragraphs) {
+            String nextParaString = (p.text()).toString();
+            paraStrings.add(nextParaString);
+        }
+
+        //add POS tagging
+        for (String ps:paraStrings) {
+            System.out.println(ps);
+        }
 
         return "redirect:/edit";
     }
