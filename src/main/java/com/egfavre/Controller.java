@@ -2,6 +2,10 @@ package com.egfavre;
 
 
 import org.h2.tools.Server;
+import org.jsoup.*;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +42,12 @@ public class Controller {
 
     @RequestMapping(path = "/scrape", method = RequestMethod.POST)
     public String scrape() throws Exception{
-
+        //get document
+        Document doc = Jsoup.connect("http://www.tmz.com").get();
+        String text = doc.body().text();
+        Elements paragraphs = doc.select("p");
+        for(Element p : paragraphs)
+            System.out.println(p.text());
 
         return "redirect:/edit";
     }
