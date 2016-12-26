@@ -58,8 +58,11 @@ public class Controller {
         }
 
         //add POS tagging
+        ArrayList<String> taggedParaStrings = new ArrayList<>();
         for (String ps:paraStrings) {
-            System.out.println(ps);
+            String tagged = tagger.tagString(ps);
+            taggedParaStrings.add(tagged);
+            System.out.println(tagged);
         }
 
         return "redirect:/edit";
