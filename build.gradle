@@ -35,4 +35,8 @@ dependencies {
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compile('com.h2database:h2')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	compile 'org.jsoup:jsoup:1.10.2'
+	compile group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '3.7.0'
+	compile group: 'edu.stanford.nlp', name: 'stanford-corenlp', version: '3.7.0', classifier: 'models'
+
 }

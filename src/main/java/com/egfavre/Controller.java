@@ -24,7 +24,7 @@ import java.util.ArrayList;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    MaxentTagger tagger = new MaxentTagger("/Users/user/IdeaProjects/MakingNews/models/english-bidirectional-distsim.tagger");
+    MaxentTagger tagger = new MaxentTagger("/Users/Lizfavre/IdeaProjects/MakingNews/models/english-bidirectional-distsim.tagger");
     String tagged;
 
     @PostConstruct
